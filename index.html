@@ -3,903 +3,1321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IR Group of Constructions | Architectural Design & Construction</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>IR Group of Constructions | Engineers • Builders • Project Consultants</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #111111;
-            --accent: #E8A93E;
-            --secondary: #FFFFFF;
-            --dark-gray: #1F1F1F;
-            --soft-text: #C9C9C9;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        }
-
+        /* CSS Reset and Base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        :root {
+            --primary-orange: #F97316;
+            --secondary-orange: #EA580C;
+            --primary-text: #111111;
+            --secondary-text: #4B5563;
+            --background: #FFFFFF;
+            --section-bg: #FFF7ED;
+            --border: #E5E7EB;
+        }
+        
         html {
             scroll-behavior: smooth;
         }
-
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--primary);
-            color: var(--secondary);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-weight: 400;
+            color: var(--primary-text);
+            background-color: var(--background);
+            line-height: 1.5;
             overflow-x: hidden;
         }
-
+        
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            margin-bottom: 1rem;
+            font-weight: 500;
+            line-height: 1.3;
         }
-
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1rem;
         }
-
+        
         section {
-            padding: 80px 0;
-            position: relative;
+            padding: 3rem 1rem;
         }
-
-        .section-heading {
+        
+        .section-title {
+            font-size: 1.5rem;
             text-align: center;
-            margin-bottom: 50px;
-            position: relative;
+            margin-bottom: 2rem;
+            color: var(--primary-text);
         }
-
-        .section-heading h2 {
-            font-size: 2.5rem;
-            display: inline-block;
-            position: relative;
-            color: var(--secondary);
-        }
-
-        .section-heading h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        /* Luxury Glass Effect */
-        .glass-panel {
-            background: rgba(31, 31, 31, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: var(--transition);
-        }
-
-        /* Gold Hover Border Effect */
-        .gold-hover:hover {
-            border-color: var(--accent) !important;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(232, 169, 62, 0.1);
-        }
-
-        /* Button Styles */
+        
         .btn {
             display: inline-block;
-            padding: 14px 32px;
-            background-color: var(--accent);
-            color: var(--primary);
+            background-color: var(--primary-orange);
+            color: white;
             border: none;
+            padding: 0.75rem 1.5rem;
             border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 500;
             text-decoration: none;
             cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
+            transition: background-color 0.3s ease;
         }
-
+        
         .btn:hover {
-            background-color: #d6992e;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(232, 169, 62, 0.2);
+            background-color: var(--secondary-orange);
         }
-
-        .btn-whatsapp {
-            background-color: #25D366;
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-orange);
+            color: var(--primary-orange);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-orange);
             color: white;
         }
-
-        .btn-whatsapp:hover {
-            background-color: #1da851;
-        }
-
+        
         /* Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 0;
+            background-color: var(--background);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             z-index: 1000;
-            background-color: rgba(17, 17, 17, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: var(--transition);
+            padding: 0.75rem 1rem;
         }
-
-        header.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
+        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        .logo {
+        
+        .logo-container {
             display: flex;
             align-items: center;
-            text-decoration: none;
-            color: var(--secondary);
+            gap: 0.75rem;
         }
-
-        .logo-icon {
+        
+        .logo {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--accent) 0%, #d6992e 100%);
-            border-radius: 8px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-weight: 700;
-            font-size: 1.5rem;
-            font-family: 'Playfair Display', serif;
         }
-
-        .logo-text h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0;
-            line-height: 1.2;
-        }
-
-        .logo-text span {
-            font-size: 0.8rem;
-            color: var(--soft-text);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover:after {
+        
+        .logo img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
         }
-
+        
+        .logo-text h1 {
+            font-size: 1rem;
+            color: var(--primary-text);
+            margin-bottom: 0.15rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.7rem;
+            color: var(--secondary-text);
+        }
+        
+        .header-cta .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+        
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            padding-top: 6rem;
+            padding-bottom: 3rem;
+            background-color: var(--section-bg);
             position: relative;
             overflow: hidden;
-            padding-top: 100px;
         }
-
-        .hero-bg {
+        
+        .hero::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1503387769-00a112127ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23FFF7ED"/><path d="M0,50 Q50,30 100,50 L100,100 L0,100 Z" fill="%23F97316" opacity="0.05"/></svg>');
             background-size: cover;
-            background-position: center;
-            z-index: -1;
-            transform: scale(1.1);
-            transition: transform 10s ease;
+            z-index: 0;
         }
-
-        .hero:hover .hero-bg {
-            transform: scale(1.15);
-        }
-
+        
         .hero-content {
-            max-width: 800px;
             position: relative;
             z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            color: var(--secondary);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--soft-text);
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 20px;
-        }
-
-        /* About Section */
-        .about-section {
-            background-color: var(--dark-gray);
-        }
-
-        .split-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 25px;
-            color: var(--soft-text);
-            font-size: 1.1rem;
-        }
-
-        .about-image {
-            height: 400px;
-            background: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .about-image:hover:after {
-            border-color: var(--accent);
-            transform: scale(0.98);
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            padding: 40px 30px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        .service-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
+        
+        .hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-text);
         }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(232, 169, 62, 0.1);
-            border-radius: 50%;
+        
+        .hero p {
+            color: var(--secondary-text);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        
+        .hero-image {
+            margin-top: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 300px;
+            background-color: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--accent);
-            font-size: 1.8rem;
         }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-
-        .service-card p {
-            color: var(--soft-text);
+        
+        /* How It Works */
+        .how-it-works {
+            background-color: var(--background);
         }
-
-        /* Projects Gallery */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+        
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        .project-card {
-            height: 300px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
+        
+        @media (min-width: 768px) {
+            .steps-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
             position: relative;
-            overflow: hidden;
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            background-color: white;
+            color: var(--primary-orange);
+            font-size: 1.5rem;
+        }
+        
+        .step h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-text);
+        }
+        
+        .step p {
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+        }
+        
+        /* Portfolio */
+        .portfolio {
+            background-color: var(--section-bg);
+        }
+        
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+        
+        .portfolio-tab {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
             cursor: pointer;
-            transition: var(--transition);
+            border-bottom: 2px solid transparent;
         }
-
-        .project-card:hover {
-            transform: translateY(-10px);
+        
+        .portfolio-tab.active {
+            color: var(--primary-orange);
+            border-bottom: 2px solid var(--primary-orange);
         }
-
-        .project-overlay {
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .portfolio-item {
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            background-color: white;
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.05);
+        }
+        
+        /* About */
+        .about {
+            background-color: var(--background);
+        }
+        
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .about-container {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 3rem;
+            }
+        }
+        
+        .owner-image {
+            width: 200px;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5;
+            margin-bottom: 1.5rem;
+        }
+        
+        .owner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @media (min-width: 768px) {
+            .owner-image {
+                margin-bottom: 0;
+            }
+        }
+        
+        .owner-details {
+            flex: 1;
+        }
+        
+        .owner-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-text);
+        }
+        
+        .owner-qualification {
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .owner-details p {
+            color: var(--secondary-text);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--section-bg);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-text);
+            margin-right: 1rem;
+        }
+        
+        .testimonial-name {
+            font-size: 0.95rem;
+            color: var(--primary-text);
+            margin-bottom: 0.25rem;
+        }
+        
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 0.8rem;
+        }
+        
+        .testimonial-text {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background-color: var(--background);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.25rem;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: #f9fafb;
+        }
+        
+        .faq-question h3 {
+            font-size: 1rem;
+            color: var(--primary-text);
+            margin: 0;
+        }
+        
+        .faq-icon {
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.25rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: white;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--section-bg);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-text);
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-detail-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(249, 115, 22, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-detail-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--primary-text);
+        }
+        
+        .contact-detail-text p {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+        
+        .contact-form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form-container h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-text);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--primary-text);
+        }
+        
+        .contact-form .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--primary-text);
+            font-family: inherit;
+        }
+        
+        .contact-form .form-control:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+        }
+        
+        .contact-form textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-form-submit {
+            width: 100%;
+        }
+        
+        /* Map Section */
+        .map-section {
+            background-color: var(--background);
+            padding-top: 0;
+        }
+        
+        .map-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 400px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #111111;
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-logo .logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            background-color: white;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-logo p {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+        
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .footer-contact h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-contact p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact i {
+            margin-right: 0.5rem;
+            color: var(--primary-orange);
+        }
+        
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+        
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+        
+        /* Form Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.2rem;
+            color: var(--primary-text);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary-text);
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--primary-text);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--primary-text);
+            font-family: inherit;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+        }
+        
+        .district-search-container {
+            position: relative;
+        }
+        
+        .district-results {
             position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+        }
+        
+        .district-results.active {
+            display: block;
+        }
+        
+        .district-item {
+            padding: 0.75rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+        
+        .district-item:hover {
+            background-color: #f9fafb;
+        }
+        
+        .district-item:last-child {
+            border-bottom: none;
+        }
+        
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: right;
+        }
+        
+        /* Fixed Mobile Action Bar */
+        .mobile-action-bar {
+            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 30px;
-            background: linear-gradient(transparent, rgba(17, 17, 17, 0.9));
-            color: white;
-            transform: translateY(100%);
-            transition: var(--transition);
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            z-index: 1000;
+            padding: 0.75rem 1rem;
+            display: none;
         }
-
-        .project-card:hover .project-overlay {
-            transform: translateY(0);
+        
+        @media (max-width: 767px) {
+            .mobile-action-bar {
+                display: flex;
+            }
         }
-
-        .project-overlay h3 {
-            margin-bottom: 10px;
-        }
-
-        .project-overlay p {
-            color: var(--soft-text);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        /* How We Work Section */
-        .steps-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .step-card {
-            text-align: center;
-            padding: 30px 20px;
-            position: relative;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background-color: var(--accent);
-            color: var(--primary);
-            border-radius: 50%;
+        
+        .mobile-action-btn {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 25px;
-            font-family: 'Playfair Display', serif;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border: none;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
         }
-
-        .step-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-
-        .step-card p {
-            color: var(--soft-text);
-        }
-
-        /* Pricing Banner */
-        .pricing-banner {
-            background: linear-gradient(90deg, var(--primary) 50%, var(--accent) 50%);
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .pricing-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pricing-content h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--secondary) 50%, var(--primary) 50%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .pricing-content p {
-            color: var(--soft-text);
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        /* Testimonials */
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .testimonial-card {
-            padding: 40px;
-            text-align: center;
-            border: 1px solid rgba(232, 169, 62, 0.2);
-            border-radius: 8px;
-            margin: 0 15px;
-        }
-
-        .testimonial-text {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 25px;
-            color: var(--soft-text);
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--accent);
-        }
-
-        /* CTA Banner */
-        .cta-banner {
-            background-color: rgba(232, 169, 62, 0.1);
-            padding: 80px 0;
-            text-align: center;
-            border-top: 1px solid rgba(232, 169, 62, 0.2);
-            border-bottom: 1px solid rgba(232, 169, 62, 0.2);
-        }
-
-        .cta-banner h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .cta-banner p {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: var(--soft-text);
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-gray);
-            padding: 80px 0 40px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
-        }
-
-        .footer-col h3 {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: var(--secondary);
-        }
-
-        .footer-col p {
-            color: var(--soft-text);
-            margin-bottom: 20px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 15px;
-            color: var(--soft-text);
-        }
-
-        .footer-col ul li i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--soft-text);
-            font-size: 0.9rem;
-        }
-
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        
+        .mobile-action-btn:first-child {
+            background-color: var(--primary-orange);
             color: white;
-            font-size: 1.8rem;
-            z-index: 100;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-            transition: var(--transition);
+            margin-right: 0.5rem;
         }
-
-        .whatsapp-float:hover {
-            background-color: #1da851;
-            transform: scale(1.1);
+        
+        .mobile-action-btn:last-child {
+            background-color: white;
+            color: var(--primary-orange);
+            border: 1px solid var(--primary-orange);
         }
-
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero-content h1 {
-                font-size: 2.8rem;
+        
+        /* Responsive */
+        @media (max-width: 767px) {
+            section {
+                padding: 2rem 1rem;
             }
             
-            .split-section {
-                grid-template-columns: 1fr;
+            .hero {
+                padding-top: 5rem;
             }
             
-            .pricing-banner {
-                background: var(--accent);
+            .hero h1 {
+                font-size: 1.5rem;
             }
             
-            .pricing-content h2 {
-                background: none;
-                -webkit-text-fill-color: var(--primary);
-                color: var(--primary);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                z-index: 999;
+            .hero-image {
+                height: 200px;
             }
             
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
             
-            .nav-links li {
-                margin: 15px 0;
+            .contact-info, .contact-form-container {
+                padding: 1.5rem;
             }
             
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-cta {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .section-heading h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2rem;
+            .map-container {
+                height: 300px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">IR</div>
-                <div class="logo-text">
-                    <h1>IR Group</h1>
-                    <span>of Constructions</span>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.jpg" alt="IR Group of Constructions">
                 </div>
-            </a>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#contact" class="btn">Contact</a></li>
-            </ul>
+                <div class="logo-text">
+                    <h1>IR Group of Constructions</h1>
+                    <p>Engineers • Builders • Project Consultants</p>
+                </div>
+            </div>
+            <div class="header-cta">
+                <a href="https://wa.me/6364898126" class="btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg" id="heroBg"></div>
+    <section class="hero" id="hero">
         <div class="container">
-            <div class="hero-content fade-in">
-                <h1>Building Dreams With Precision, Passion & Design</h1>
-                <p>Architectural Designs | Construction | Renovation | Interiors. We transform your vision into reality with meticulous craftsmanship and innovative design.</p>
-                <div class="hero-cta">
-                    <a href="https://wa.me/919876543210" class="btn btn-whatsapp" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                    </a>
-                    <a href="#projects" class="btn" style="background-color: transparent; border: 1px solid var(--accent); color: var(--accent);">View Projects</a>
+            <div class="hero-content">
+                <h1>Building Strong Foundations Across Karnataka</h1>
+                <p>Professional construction services with guaranteed quality, timely delivery, and transparent pricing. Serving all districts across Karnataka.</p>
+                <button class="btn" id="startConstructionBtn">Start Your Construction</button>
+                <div class="hero-image">
+                    <img src="r8.jpeg" alt="Construction Project">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <div class="section-heading fade-in">
-                <h2>About IR Group</h2>
-            </div>
-            <div class="split-section fade-in">
-                <div class="about-text">
-                    <p>IR Group of Constructions specializes in designing, building and renovating premium homes and commercial spaces. We focus on accuracy, quality materials, and effortless architectural elegance to deliver projects that are modern, comfortable and long-lasting.</p>
-                    <p>With over a decade of experience, we've established ourselves as a trusted name in architectural design and construction, delivering projects that stand the test of time while exceeding client expectations.</p>
-                    <a href="https://wa.me/919876543210" class="btn" target="_blank">Discuss Your Project</a>
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Consultation</h3>
+                    <p>We discuss your requirements and vision for the project.</p>
                 </div>
-                <div class="about-image"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="section-heading fade-in">
-                <h2>What We Offer</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card glass-panel gold-hover fade-in">
-                    <div class="service-icon">
+                <div class="step">
+                    <div class="step-icon">
                         <i class="fas fa-drafting-compass"></i>
                     </div>
-                    <h3>Architectural Designs</h3>
-                    <p>Custom architectural planning with 3D visualization for residential and commercial projects.</p>
+                    <h3>Design</h3>
+                    <p>Creating architectural plans that match your needs.</p>
                 </div>
-                <div class="service-card glass-panel gold-hover fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-tasks"></i>
                     </div>
-                    <h3>Residential Construction</h3>
-                    <p>Building premium homes with quality materials and modern construction techniques.</p>
+                    <h3>Planning</h3>
+                    <p>Detailed project planning and timeline creation.</p>
                 </div>
-                <div class="service-card glass-panel gold-hover fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-calculator"></i>
                     </div>
-                    <h3>Commercial Construction</h3>
-                    <p>Office spaces, retail outlets, and commercial complexes designed for functionality.</p>
+                    <h3>Estimation</h3>
+                    <p>Transparent cost estimation with no hidden charges.</p>
                 </div>
-                <div class="service-card glass-panel gold-hover fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-couch"></i>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-hard-hat"></i>
                     </div>
-                    <h3>Interior & Renovation</h3>
-                    <p>Complete interior design solutions and renovation services for modern living.</p>
+                    <h3>Construction</h3>
+                    <p>Quality construction with regular updates.</p>
                 </div>
-                <div class="service-card glass-panel gold-hover fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-ruler-combined"></i>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-key"></i>
                     </div>
-                    <h3>Structural Planning</h3>
-                    <p>Expert structural engineering ensuring safety, durability and compliance with standards.</p>
-                </div>
-                <div class="service-card glass-panel gold-hover fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h3>On-site Execution & Quality Check</h3>
-                    <p>Meticulous on-site supervision and quality control throughout the construction process.</p>
+                    <h3>Handover</h3>
+                    <p>Final inspection and smooth project handover.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" style="background-color: var(--dark-gray);">
+    <!-- Portfolio -->
+    <section class="portfolio" id="portfolio">
         <div class="container">
-            <div class="section-heading fade-in">
-                <h2>Recent Projects</h2>
+            <h2 class="section-title">Our Projects</h2>
+            <div class="portfolio-tabs">
+                <button class="portfolio-tab active" data-tab="residential">Residential Projects</button>
+                <button class="portfolio-tab" data-tab="drawings">Working Drawings</button>
+                <button class="portfolio-tab" data-tab="floor">Floor Planning</button>
             </div>
-            <div class="projects-grid">
-                <div class="project-card fade-in" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
-                    <div class="project-overlay">
-                        <h3>Modern Villa Design</h3>
-                        <p>Complete architectural design and construction of a luxury 4BHK villa with premium finishes.</p>
-                        <a href="https://wa.me/919876543210?text=Hi,%20I'm%20interested%20in%20the%20Modern%20Villa%20Design%20project" class="btn" target="_blank" style="padding: 10px 20px; font-size: 0.9rem;">Ask About This Project</a>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Residential Projects - Default -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="r1.jpeg" alt="Residential Project">
                     </div>
                 </div>
-                <div class="project-card fade-in" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80');">
-                    <div class="project-overlay">
-                        <h3>Commercial Complex</h3>
-                        <p>Design and construction of a 6-story commercial building with modern facade and interiors.</p>
-                        <a href="https://wa.me/919876543210?text=Hi,%20I'm%20interested%20in%20the%20Commercial%20Complex%20project" class="btn" target="_blank" style="padding: 10px 20px; font-size: 0.9rem;">Ask About This Project</a>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                       <img src="r2.jpeg" alt="Residential Project"> 
                     </div>
                 </div>
-                <div class="project-card fade-in" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80');">
-                    <div class="project-overlay">
-                        <h3>Luxury Apartment Interiors</h3>
-                        <p>Complete interior design and execution for a premium apartment with custom finishes.</p>
-                        <a href="https://wa.me/919876543210?text=Hi,%20I'm%20interested%20in%20the%20Luxury%20Apartment%20Interiors%20project" class="btn" target="_blank" style="padding: 10px 20px; font-size: 0.9rem;">Ask About This Project</a>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="r3.jpeg" alt="Residential Project">
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="r4.jpeg" alt="Residential Project">
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="r5.jpeg" alt="Residential Project">
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="r6.jpeg" alt="Residential Project">
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="r7.jpeg" alt="Residential Project">
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="r8.jpeg" alt="Residential Project">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How We Work Section -->
-    <section id="process">
+    <!-- About -->
+    <section class="about" id="about">
         <div class="container">
-            <div class="section-heading fade-in">
-                <h2>Our Working Model</h2>
-            </div>
-            <div class="steps-container">
-                <div class="step-card glass-panel fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Design Consultation</h3>
-                    <p>Detailed architectural planning and 3D visualization to bring your ideas to life before construction begins.</p>
+            <h2 class="section-title">About Us</h2>
+            <div class="about-container">
+                <div class="owner-image">
+                    <img src="owner.jpeg" alt="Rohan Gowda C R">
                 </div>
-                <div class="step-card glass-panel fade-in">
-                    <div class="step-number">2</div>
-                    <h3>Material Selection</h3>
-                    <p>Collaborative selection of quality materials from approved suppliers with quality benchmarking.</p>
+                <div class="owner-details">
+                    <h3>Rohan Gowda C R</h3>
+                    <div class="owner-qualification">BE (Civil), MTech (Structural Engineering)</div>
+                    <p>With over 15 years of experience in the construction industry, Rohan Gowda leads IR Group of Constructions with a focus on structural integrity, quality craftsmanship, and client satisfaction. Our team combines engineering expertise with practical construction knowledge to deliver projects that stand the test of time.</p>
+                    <p>We serve all districts across Karnataka, bringing professional construction services to both urban and rural areas. Our commitment to transparency, timely delivery, and adherence to budgets has made us a trusted name in construction across the state.</p>
                 </div>
-                <div class="step-card glass-panel fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Execution & Construction</h3>
-                    <p>Professional on-site monitoring with strict timeline control and regular progress updates.</p>
-                </div>
-                <div class="step-card glass-panel fade-in">
-                    <div class="step-number">4</div>
-                    <h3>Finishing & Handover</h3>
-                    <p>Meticulous interior finishing, detailing, and final walkthrough before project handover.</p>
-                </div>
-            </div>
-            <div class="text-center fade-in" style="text-align: center; margin-top: 50px;">
-                <a href="https://wa.me/919876543210" class="btn" target="_blank">Start Your Project</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Banner -->
-    <section class="pricing-banner">
-        <div class="container">
-            <div class="pricing-content fade-in">
-                <h2>Construction Starting From 1999/sqft</h2>
-                <p>Material quality, documentation, structural quality & finishing included. Transparent pricing with no hidden costs.</p>
-                <a href="https://wa.me/919876543210?text=Hi,%20I%20would%20like%20to%20request%20a%20construction%20estimate" class="btn" style="background-color: var(--primary); color: var(--secondary);" target="_blank">Request Estimate on WhatsApp</a>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section style="background-color: var(--dark-gray);">
+    <section class="testimonials" id="testimonials">
         <div class="container">
-            <div class="section-heading fade-in">
-                <h2>Client Experiences</h2>
-            </div>
-            <div class="testimonial-slider fade-in">
-                <div class="testimonial-card glass-panel">
-                    <div class="testimonial-text">
-                        "Clear communication and transparent pricing throughout the project. IR Group delivered exactly what was promised, on time and within budget."
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Suresh Kumar</div>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="testimonial-author">- Mr. Kumar, Residential Project</div>
+                    <p class="testimonial-text">"IR Group built our house in Mandya with excellent quality and within the promised timeline. Their attention to detail is remarkable."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Priya Sharma</div>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Professional team from start to finish. No cost overruns and the quality exceeded our expectations. Highly recommended!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Rajesh Nair</div>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Their expertise in structural engineering is evident in the solid construction of our commercial building. Great work!"</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="cta-banner" id="contact">
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
         <div class="container">
-            <div class="fade-in">
-                <h2>Let's Build Something Beautiful</h2>
-                <p>Share your site location, requirement or design preference on WhatsApp. Our architectural team will connect with you within 24 hours to discuss your project in detail.</p>
-                <a href="https://wa.me/919876543210" class="btn btn-whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat Now
-                </a>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What areas do you serve in Karnataka?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We serve all districts across Karnataka. Whether you're in Bengaluru, Mysuru, Mangaluru, Hubballi, or any other district, our team is ready to assist with your construction project.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does a typical residential construction project take?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The timeline depends on the size and complexity of the project. A typical 2BHK house takes 8-10 months, while larger projects like villas or apartments may take 12-18 months. We provide a detailed timeline during the planning phase.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you provide structural warranty for your constructions?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide a 10-year structural warranty on all our constructions. This covers any structural defects, giving you long-term assurance of the quality and durability of your building.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your payment schedule?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We follow a milestone-based payment system linked to project completion stages. Payments are only requested after you verify the completion of each construction phase, ensuring transparency and accountability.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can you help with getting necessary permits and approvals?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide complete assistance with all necessary permits, approvals, and documentation required for construction projects. Our team is experienced in dealing with local municipal authorities across Karnataka.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail-item">
+                            <div class="contact-detail-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-detail-text">
+                                <h4>Office Address</h4>
+                                <p>1st Floor, MSA Complex,<br>Karemane Gate,<br>Mandya – Nagamangala Road,<br>Mandya Taluk – 571403</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="contact-detail-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-detail-text">
+                                <h4>WhatsApp Number</h4>
+                                <p>6364898126</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="contact-detail-icon">
+                                <i class="fas fa-map"></i>
+                            </div>
+                            <div class="contact-detail-text">
+                                <h4>Service Area</h4>
+                                <p>All Districts Across Karnataka</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn" id="contactBtn">Start Your Construction Project</button>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Send Us a Message</h3>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Full Name *</label>
+                            <input type="text" id="contactName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMobile">Mobile Number *</label>
+                            <input type="tel" id="contactMobile" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input type="email" id="contactEmail" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Your Message *</label>
+                            <textarea id="contactMessage" class="form-control" required placeholder="Tell us about your construction project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn contact-form-submit">Send Message via WhatsApp</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <!-- Google Maps Embed -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.040166441675!2d76.89516177508728!3d12.824131987459102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5350c3d8e1d6f%3A0x21b48c4db5b239c6!2sMandya%2C%20Karnataka%20571403!5e0!3m2!1sen!2sin!4v1712578123456!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -907,106 +1325,324 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col fade-in">
-                    <h3>IR GROUP OF CONSTRUCTIONS</h3>
-                    <p>Architectural, residential & commercial construction executed with love, detail and structural perfection.</p>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <img src="logo.jpg" alt="IR Group of Constructions">
+                    </div>
+                    <h3>IR Group of Constructions</h3>
+                    <p>Engineers • Builders • Project Consultants</p>
+                    <p style="margin-top: 1rem; font-size: 0.8rem; color: #9ca3af;">Serving All Districts Across Karnataka</p>
                 </div>
-                <div class="footer-col fade-in">
-                    <h3>Office</h3>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> MSA Complex, 1st Floor</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Karemane Gate, Nagamangala Road</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Mandya 571401</li>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#portfolio">Projects</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-col fade-in">
-                    <h3>Contact</h3>
-                    <a href="https://wa.me/919876543210" class="btn btn-whatsapp" target="_blank" style="display: inline-block; margin-top: 10px;">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Support
-                    </a>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 1st Floor, MSA Complex, Mandya - 571403</p>
+                    <p><i class="fab fa-whatsapp"></i> 6364898126</p>
+                    <p><i class="fas fa-map"></i> Serving All Karnataka Districts</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://wa.me/6364898126" class="btn" target="_blank" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="copyright fade-in">
-                <p>&copy; 2023 IR Group of Constructions. All rights reserved.</p>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>© 2023 IR Group of Constructions. All rights reserved. | Engineers • Builders • Project Consultants</p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Fixed Mobile Action Bar -->
+    <div class="mobile-action-bar">
+        <button class="mobile-action-btn" id="mobileCallBtn">
+            <i class="fas fa-phone"></i> Call Now
+        </button>
+        <button class="mobile-action-btn" id="mobileWhatsAppBtn">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </button>
+    </div>
+
+    <!-- Form Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Start Your Construction Project</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="constructionForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number *</label>
+                        <input type="tel" id="mobile" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectType">Project Type *</label>
+                        <select id="projectType" class="form-control" required>
+                            <option value="">Select Project Type</option>
+                            <option value="Residential House">Residential House</option>
+                            <option value="Apartment Building">Apartment Building</option>
+                            <option value="Commercial Building">Commercial Building</option>
+                            <option value="Renovation">Renovation</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="districtSearch">District *</label>
+                        <div class="district-search-container">
+                            <input type="text" id="districtSearch" class="form-control" placeholder="Search for your district in Karnataka" required>
+                            <div class="district-results" id="districtResults"></div>
+                        </div>
+                        <input type="hidden" id="selectedDistrict">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="submitForm">Submit & Continue to WhatsApp</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
+        // Karnataka districts for search
+        const karnatakaDistricts = [
+            "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", 
+            "Bidar", "Chamarajanagar", "Chikballapur", "Chikkamagaluru", "Chitradurga", 
+            "Dakshina Kannada", "Davangere", "Dharwad", "Gadag", "Hassan", "Haveri", 
+            "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", 
+            "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayapura", "Yadgir"
+        ];
 
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Parallax effect for hero background
-        const heroBg = document.getElementById('heroBg');
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            heroBg.style.transform = `translate3d(0px, ${rate}px, 0px) scale(1.1)`;
-        });
-
-        // Scroll animation
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
+        // Portfolio images by category
+        const portfolioItems = {
+            residential: [
+                { image: "r1.jpeg" },
+                { image: "r2.jpeg" },
+                { image: "r3.jpeg" },
+                { image: "r4.jpeg" },
+                { image: "r5.jpeg" },
+                { image: "r6.jpeg" },
+                { image: "r7.jpeg" },
+                { image: "r8.jpeg" }
+            ],
+            drawings: [
+                { image: "w1.png" },
+                { image: "w2.png" },
+                { image: "w3.png" },
+                { image: "w4.png" }
+            ],
+            floor: [
+                { image: "f1.png" },
+                { image: "f2.png" },
+                { image: "f3.png" },
+                { image: "f1.png" }
+            ]
         };
-        
-        window.addEventListener('scroll', fadeInOnScroll);
-        fadeInOnScroll(); // Initial check
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        // DOM Elements
+        const startConstructionBtn = document.getElementById('startConstructionBtn');
+        const contactBtn = document.getElementById('contactBtn');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeModal = document.getElementById('closeModal');
+        const submitForm = document.getElementById('submitForm');
+        const districtSearch = document.getElementById('districtSearch');
+        const districtResults = document.getElementById('districtResults');
+        const selectedDistrict = document.getElementById('selectedDistrict');
+        const portfolioTabs = document.querySelectorAll('.portfolio-tab');
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        const mobileCallBtn = document.getElementById('mobileCallBtn');
+        const mobileWhatsAppBtn = document.getElementById('mobileWhatsAppBtn');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const contactForm = document.getElementById('contactForm');
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto popup after 10 seconds
+            setTimeout(() => {
+                openModal();
+            }, 10000);
+            
+            // Set up portfolio tabs
+            portfolioTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    portfolioTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update portfolio grid
+                    updatePortfolioGrid(tabId);
+                });
+            });
+            
+            // Set up FAQ accordion
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // District search functionality
+            districtSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filteredDistricts = karnatakaDistricts.filter(district => 
+                    district.toLowerCase().includes(searchTerm)
+                );
+                
+                displayDistrictResults(filteredDistricts);
+            });
+            
+            // Modal form submission
+            submitForm.addEventListener('click', function() {
+                const form = document.getElementById('constructionForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                const fullName = document.getElementById('fullName').value;
+                const mobile = document.getElementById('mobile').value;
+                const projectType = document.getElementById('projectType').value;
+                const district = selectedDistrict.value || districtSearch.value;
+                
+                // Create WhatsApp message
+                const message = `Hello IR Group of Constructions,%0A%0ANew Construction Enquiry:%0A%0AName: ${fullName}%0AMobile: ${mobile}%0ADistrict: ${district}%0AProject Type: ${projectType}%0A%0APlease contact me for further discussion.`;
+                
+                // Redirect to WhatsApp
+                window.open(`https://wa.me/6364898126?text=${message}`, '_blank');
+                
+                // Close modal
+                closeModalFunc();
+            });
+            
+            // Contact form submission
+            contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                const name = document.getElementById('contactName').value;
+                const mobile = document.getElementById('contactMobile').value;
+                const email = document.getElementById('contactEmail').value;
+                const message = document.getElementById('contactMessage').value;
+                
+                // Create WhatsApp message
+                const whatsappMessage = `Hello IR Group of Constructions,%0A%0ANew Contact Form Enquiry:%0A%0AName: ${name}%0AMobile: ${mobile}%0AEmail: ${email}%0AMessage: ${message}%0A%0APlease contact me for further discussion.`;
+                
+                // Redirect to WhatsApp
+                window.open(`https://wa.me/6364898126?text=${whatsappMessage}`, '_blank');
+                
+                // Reset form
+                contactForm.reset();
+            });
+            
+            // Modal triggers
+            startConstructionBtn.addEventListener('click', openModal);
+            contactBtn.addEventListener('click', openModal);
+            
+            // Modal close
+            closeModal.addEventListener('click', closeModalFunc);
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModalFunc();
                 }
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+            });
+            
+            // Mobile action buttons
+            mobileCallBtn.addEventListener('click', function() {
+                window.location.href = 'tel:6364898126';
+            });
+            
+            mobileWhatsAppBtn.addEventListener('click', function() {
+                window.open('https://wa.me/6364898126', '_blank');
+            });
+            
+            // Close district results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.district-search-container')) {
+                    districtResults.classList.remove('active');
                 }
             });
         });
+        
+        // Functions
+        function openModal() {
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModalFunc() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function displayDistrictResults(districts) {
+            districtResults.innerHTML = '';
+            
+            if (districts.length === 0) {
+                districtResults.classList.remove('active');
+                return;
+            }
+            
+            districts.forEach(district => {
+                const div = document.createElement('div');
+                div.className = 'district-item';
+                div.textContent = district;
+                div.addEventListener('click', function() {
+                    districtSearch.value = district;
+                    selectedDistrict.value = district;
+                    districtResults.classList.remove('active');
+                });
+                districtResults.appendChild(div);
+            });
+            
+            districtResults.classList.add('active');
+        }
+        
+        function updatePortfolioGrid(category) {
+            portfolioGrid.innerHTML = '';
+            
+            if (portfolioItems[category]) {
+                // Show 8 items for residential, 4 for others
+                const itemsToShow = category === 'residential' ? 8 : 4;
+                const items = portfolioItems[category].slice(0, itemsToShow);
+                
+                items.forEach(item => {
+                    const portfolioItem = document.createElement('div');
+                    portfolioItem.className = 'portfolio-item';
+                    portfolioItem.innerHTML = `
+                        <div class="portfolio-image">
+                            <img src="${item.image}" alt="Construction Project">
+                        </div>
+                    `;
+                    portfolioGrid.appendChild(portfolioItem);
+                });
+            }
+        }
     </script>
 </body>
 </html>
