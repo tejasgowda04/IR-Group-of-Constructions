@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IR Group of Constructions | Engineers • Builders • Project Consultants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* CSS Reset and Base */
@@ -16,11 +19,16 @@
         :root {
             --primary-orange: #F97316;
             --secondary-orange: #EA580C;
-            --primary-text: #111111;
+            --accent-teal: #0D9488;
+            --accent-dark: #1F2937;
+            --accent-gold: #F59E0B;
+            --primary-text: #111827;
             --secondary-text: #4B5563;
             --background: #FFFFFF;
-            --section-bg: #FFF7ED;
+            --section-bg: #FEF3C7;
             --border: #E5E7EB;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
         
         html {
@@ -28,23 +36,38 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 400;
             color: var(--primary-text);
             background-color: var(--background);
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
-            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
             line-height: 1.3;
         }
         
         h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
             text-align: center;
+            color: var(--accent-dark);
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--accent-teal));
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         img {
@@ -57,47 +80,135 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
         
         section {
-            padding: 3rem 1rem;
+            padding: 4.5rem 1.5rem;
         }
         
         .section-title {
-            font-size: 1.5rem;
+            font-size: 2.2rem;
             text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-text);
+            margin-bottom: 3rem;
+            color: var(--accent-dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--accent-teal));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--primary-orange);
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
             text-decoration: none;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(249, 115, 22, 0.3);
+            letter-spacing: 0.5px;
+            font-family: 'Poppins', sans-serif;
         }
         
         .btn:hover {
-            background-color: var(--secondary-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+            background: linear-gradient(135deg, var(--secondary-orange), var(--primary-orange));
         }
         
         .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary-orange);
+            background: transparent;
+            border: 2px solid var(--primary-orange);
             color: var(--primary-orange);
+            box-shadow: none;
         }
         
         .btn-outline:hover {
-            background-color: var(--primary-orange);
+            background: var(--primary-orange);
             color: white;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideLeft {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        @keyframes highlight {
+            0%, 100% {
+                background-color: var(--accent-teal);
+            }
+            50% {
+                background-color: var(--accent-gold);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .animate-slideLeft {
+            animation: slideLeft 0.5s ease forwards;
+        }
+        
+        .animate-highlight {
+            animation: highlight 2s ease-in-out infinite;
         }
         
         /* Header */
@@ -106,10 +217,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--background);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             z-index: 1000;
-            padding: 0.75rem 1rem;
+            padding: 1rem 1.5rem;
+            backdrop-filter: blur(10px);
         }
         
         .header-container {
@@ -123,18 +235,19 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
         }
         
         .logo {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             overflow: hidden;
-            background-color: #f0f0f0;
+            background-color: var(--primary-orange);
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 5px 15px rgba(249, 115, 22, 0.3);
         }
         
         .logo img {
@@ -149,31 +262,35 @@
         }
         
         .logo-text h1 {
-            font-size: 1rem;
-            color: var(--primary-text);
-            margin-bottom: 0.15rem;
+            font-size: 1.3rem;
+            color: var(--accent-dark);
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
         }
         
         .logo-text p {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--secondary-text);
+            letter-spacing: 0.5px;
         }
         
         .header-cta .btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
         }
         
         /* Hero Section */
         .hero {
-            padding-top: 6rem;
-            padding-bottom: 3rem;
-            background-color: var(--section-bg);
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
             position: relative;
             overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
         }
         
         .hero::before {
@@ -183,8 +300,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23FFF7ED"/><path d="M0,50 Q50,30 100,50 L100,100 L0,100 Z" fill="%23F97316" opacity="0.05"/></svg>');
-            background-size: cover;
+            background-image: 
+                radial-gradient(circle at 10% 90%, rgba(249, 115, 22, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(13, 148, 136, 0.1) 0%, transparent 40%);
             z-index: 0;
         }
         
@@ -192,38 +310,119 @@
             position: relative;
             z-index: 1;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
         .hero h1 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary-text);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-dark);
+            line-height: 1.2;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .hero h1 span {
+            color: var(--primary-orange);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero h1 span:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: rgba(249, 115, 22, 0.2);
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
         }
         
         .hero p {
             color: var(--secondary-text);
-            margin-bottom: 2rem;
-            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+        
+        /* Offers Slider - FIXED VERSION */
+        .offers-slider-container {
+            background: linear-gradient(90deg, #1E40AF, #3B82F6, #1D4ED8);
+            color: white;
+            padding: 0.8rem 0;
+            margin: 2rem 0 3rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            height: auto;
+            min-height: 10px;
+        }
+        
+        .offers-slider {
+            display: flex;
+            width: 400%;
+            animation: marquee 25s linear infinite;
+            padding: 0.5rem 0;
+        }
+        
+        .offer-slide {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1.5rem;
+            min-width: 25%;
+            white-space: nowrap;
+        }
+        
+        .offer-slide i {
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .offer-slide span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .hero-image {
-            margin-top: 2rem;
-            border-radius: 8px;
+            margin-top: 3rem;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            height: 300px;
+            box-shadow: var(--shadow);
+            height: 380px;
             background-color: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
         
         .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.05);
         }
         
         /* How It Works */
@@ -234,8 +433,8 @@
         .steps-container {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-            max-width: 800px;
+            gap: 2.5rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -252,30 +451,49 @@
             min-width: 250px;
             text-align: center;
             position: relative;
+            padding: 2rem 1.5rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
         
         .step-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             background-color: white;
             color: var(--primary-orange);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover .step-icon {
+            background: var(--primary-orange);
+            color: white;
+            transform: rotateY(180deg);
         }
         
         .step h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-text);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-dark);
+            font-family: 'Poppins', sans-serif;
         }
         
         .step p {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: var(--secondary-text);
         }
         
@@ -287,57 +505,73 @@
         .portfolio-tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--border);
             flex-wrap: wrap;
         }
         
         .portfolio-tab {
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             background: none;
             border: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: 500;
             color: var(--secondary-text);
             cursor: pointer;
-            border-bottom: 2px solid transparent;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
         }
         
         .portfolio-tab.active {
             color: var(--primary-orange);
-            border-bottom: 2px solid var(--primary-orange);
+            border-bottom: 3px solid var(--primary-orange);
+        }
+        
+        .portfolio-tab:hover {
+            color: var(--primary-orange);
         }
         
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
         }
         
         .portfolio-item {
-            border-radius: 6px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow);
             background-color: white;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
         
         .portfolio-image {
-            height: 200px;
+            height: 250px;
             background-color: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
         }
         
         .portfolio-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
         
         .portfolio-item:hover .portfolio-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
         /* About */
@@ -349,26 +583,27 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
-        @media (min-width: 768px) {
+        @media (min-width: 992px) {
             .about-container {
                 flex-direction: row;
                 align-items: flex-start;
-                gap: 3rem;
+                gap: 4rem;
             }
         }
         
         .owner-image {
-            width: 200px;
-            height: 250px;
-            border-radius: 8px;
+            width: 280px;
+            height: 350px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             background-color: #f5f5f5;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
         
         .owner-image img {
@@ -377,7 +612,19 @@
             object-fit: cover;
         }
         
-        @media (min-width: 768px) {
+        .owner-image:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary-orange);
+            border-radius: 20px;
+            top: 15px;
+            left: 15px;
+            z-index: -1;
+        }
+        
+        @media (min-width: 992px) {
             .owner-image {
                 margin-bottom: 0;
             }
@@ -388,20 +635,28 @@
         }
         
         .owner-details h3 {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            color: var(--primary-text);
+            color: var(--accent-dark);
+            font-family: 'Poppins', sans-serif;
         }
         
         .owner-qualification {
             color: var(--primary-orange);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(249, 115, 22, 0.1);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
         }
         
         .owner-details p {
             color: var(--secondary-text);
             margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
         
         /* Testimonials */
@@ -411,52 +666,80 @@
         
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
             max-width: 1000px;
             margin: 0 auto;
         }
         
         .testimonial-card {
             background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-top: 4px solid var(--accent-teal);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(13, 148, 136, 0.1);
+            font-family: serif;
+            line-height: 1;
         }
         
         .testimonial-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .testimonial-image {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background-color: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--secondary-text);
-            margin-right: 1rem;
+            margin-right: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .testimonial-name {
-            font-size: 0.95rem;
-            color: var(--primary-text);
+            font-size: 1.1rem;
+            color: var(--accent-dark);
             margin-bottom: 0.25rem;
+            font-family: 'Poppins', sans-serif;
         }
         
         .testimonial-stars {
-            color: #fbbf24;
-            font-size: 0.8rem;
+            color: #FFD700;
+            font-size: 0.9rem;
         }
         
         .testimonial-text {
             color: var(--secondary-text);
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-style: italic;
+            line-height: 1.6;
         }
         
         /* FAQ Section */
@@ -470,14 +753,15 @@
         }
         
         .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: white;
         }
         
         .faq-question {
-            padding: 1.25rem;
+            padding: 1.5rem;
             background-color: white;
             display: flex;
             justify-content: space-between;
@@ -491,15 +775,18 @@
         }
         
         .faq-question h3 {
-            font-size: 1rem;
-            color: var(--primary-text);
+            font-size: 1.1rem;
+            color: var(--accent-dark);
             margin: 0;
+            padding-right: 2rem;
+            font-family: 'Poppins', sans-serif;
         }
         
         .faq-icon {
             color: var(--primary-orange);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
         
         .faq-item.active .faq-icon {
@@ -507,22 +794,23 @@
         }
         
         .faq-answer {
-            padding: 0 1.25rem;
+            padding: 0 1.5rem;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            transition: max-height 0.5s ease, padding 0.5s ease;
             background-color: white;
         }
         
         .faq-item.active .faq-answer {
-            padding: 0 1.25rem 1.25rem;
+            padding: 0 1.5rem 1.5rem;
             max-height: 500px;
         }
         
         .faq-answer p {
             color: var(--secondary-text);
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin: 0;
+            line-height: 1.6;
         }
         
         /* Contact Section */
@@ -533,32 +821,46 @@
         .contact-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 3rem;
             max-width: 1000px;
             margin: 0 auto;
         }
         
-        @media (min-width: 768px) {
+        @media (min-width: 992px) {
             .contact-container {
                 grid-template-columns: 1fr 1fr;
             }
         }
         
         .contact-info {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, var(--accent-dark), #2D3748);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            color: white;
         }
         
         .contact-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-text);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: white;
+            position: relative;
+            padding-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .contact-info h3:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-orange);
+            bottom: 0;
+            left: 0;
         }
         
         .contact-details {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
         
         .contact-detail-item {
@@ -568,40 +870,56 @@
         }
         
         .contact-detail-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background-color: rgba(249, 115, 22, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-orange);
-            margin-right: 1rem;
+            margin-right: 1.5rem;
             flex-shrink: 0;
+            font-size: 1.2rem;
         }
         
         .contact-detail-text h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-            color: var(--primary-text);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-family: 'Poppins', sans-serif;
         }
         
         .contact-detail-text p {
-            color: var(--secondary-text);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.5;
         }
         
         .contact-form-container {
             background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
         }
         
         .contact-form-container h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-text);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent-dark);
+            position: relative;
+            padding-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .contact-form-container h3:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-orange);
+            bottom: 0;
+            left: 0;
         }
         
         .contact-form .form-group {
@@ -611,32 +929,37 @@
         .contact-form label {
             display: block;
             margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--primary-text);
+            font-size: 1rem;
+            color: var(--accent-dark);
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
         }
         
         .contact-form .form-control {
             width: 100%;
-            padding: 0.75rem;
+            padding: 1rem 1.5rem;
             border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 0.95rem;
+            border-radius: 10px;
+            font-size: 1rem;
             color: var(--primary-text);
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
         }
         
         .contact-form .form-control:focus {
             outline: none;
             border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
         }
         
         .contact-form textarea.form-control {
-            min-height: 120px;
+            min-height: 150px;
             resize: vertical;
         }
         
         .contact-form-submit {
             width: 100%;
+            margin-top: 1rem;
         }
         
         /* Map Section */
@@ -648,10 +971,10 @@
         .map-container {
             max-width: 1000px;
             margin: 0 auto;
-            border-radius: 8px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            height: 400px;
+            box-shadow: var(--shadow);
+            height: 450px;
         }
         
         .map-container iframe {
@@ -662,9 +985,9 @@
         
         /* Footer */
         footer {
-            background-color: #111111;
+            background: var(--accent-dark);
             color: white;
-            padding: 3rem 1rem;
+            padding: 4rem 1.5rem 2rem;
         }
         
         .footer-container {
@@ -672,7 +995,7 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 3rem;
         }
         
         @media (min-width: 768px) {
@@ -687,26 +1010,46 @@
         }
         
         .footer-logo .logo {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 1rem;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 1.5rem;
             background-color: white;
         }
         
+        .footer-logo img {
+            filter: brightness(0) invert(0);
+        }
+        
         .footer-logo h3 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
+            color: white;
+            font-family: 'Poppins', sans-serif;
         }
         
         .footer-logo p {
-            font-size: 0.8rem;
-            color: #9ca3af;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
         }
         
         .footer-links h4 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
             color: white;
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-orange);
+            bottom: 0;
+            left: 0;
         }
         
         .footer-links ul {
@@ -714,53 +1057,69 @@
         }
         
         .footer-links li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: #9ca3af;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
         
         .footer-links a:hover {
             color: var(--primary-orange);
+            transform: translateX(5px);
         }
         
         .footer-contact h4 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
             color: white;
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-orange);
+            bottom: 0;
+            left: 0;
         }
         
         .footer-contact p {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 1rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
         }
         
         .footer-contact i {
-            margin-right: 0.5rem;
+            margin-right: 0.8rem;
             color: var(--primary-orange);
+            margin-top: 0.2rem;
         }
         
         .footer-bottom {
             margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #333;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
         
         .footer-copyright {
-            font-size: 0.85rem;
-            color: #9ca3af;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
         }
         
-        /* Form Modal */
-        .modal-overlay {
+        /* Mini Offers Popup */
+        .mini-offers-popup-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -771,128 +1130,134 @@
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            padding: 1rem;
+            padding: 1.5rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
         }
         
-        .modal-overlay.active {
+        .mini-offers-popup-overlay.active {
             opacity: 1;
             visibility: visible;
         }
         
-        .modal {
-            background-color: white;
-            border-radius: 8px;
-            max-width: 500px;
+        .mini-offers-popup {
+            background: white;
+            border-radius: 25px;
+            max-width: 420px;
             width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(30px) scale(0.9);
+            transition: transform 0.5s ease;
         }
         
-        .modal-overlay.active .modal {
-            transform: translateY(0);
+        .mini-offers-popup-overlay.active .mini-offers-popup {
+            transform: translateY(0) scale(1);
         }
         
-        .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .mini-offers-header {
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: white;
         }
         
-        .modal-header h3 {
-            font-size: 1.2rem;
-            color: var(--primary-text);
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--secondary-text);
-            cursor: pointer;
-            line-height: 1;
-        }
-        
-        .modal-body {
-            padding: 1.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
+        .mini-offers-header h3 {
+            font-size: 1.6rem;
             margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--primary-text);
+            color: white;
+            font-family: 'Poppins', sans-serif;
         }
         
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
+        .mini-offers-header p {
             font-size: 0.95rem;
-            color: var(--primary-text);
-            font-family: inherit;
+            opacity: 0.9;
         }
         
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-orange);
+        .mini-offers-body {
+            padding: 1.5rem 2rem;
+            text-align: center;
         }
         
-        .district-search-container {
-            position: relative;
+        .mini-offer-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-orange), var(--accent-teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
         }
         
-        .district-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            border: 1px solid var(--border);
-            border-top: none;
-            border-radius: 0 0 4px 4px;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 10;
-            display: none;
+        .mini-offer-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-dark);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
         }
         
-        .district-results.active {
-            display: block;
-        }
-        
-        .district-item {
-            padding: 0.75rem;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
+        .mini-offer-description {
             color: var(--secondary-text);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
         }
         
-        .district-item:hover {
-            background-color: #f9fafb;
+        .mini-offers-footer {
+            padding: 1.5rem 2rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
         
-        .district-item:last-child {
-            border-bottom: none;
+        .mini-offers-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
         }
         
-        .modal-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border);
-            text-align: right;
+        .mini-offers-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-offers-dot.active {
+            background: var(--primary-orange);
+            transform: scale(1.2);
+        }
+        
+        .close-mini-offers-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-mini-offers-popup:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
         }
         
         /* Fixed Mobile Action Bar */
@@ -902,11 +1267,12 @@
             left: 0;
             width: 100%;
             background-color: white;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
             display: flex;
             z-index: 1000;
-            padding: 0.75rem 1rem;
+            padding: 1rem 1.5rem;
             display: none;
+            border-radius: 20px 20px 0 0;
         }
         
         @media (max-width: 767px) {
@@ -920,54 +1286,116 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem;
+            gap: 0.8rem;
+            padding: 1rem;
             border: none;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
         
         .mobile-action-btn:first-child {
-            background-color: var(--primary-orange);
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
             color: white;
-            margin-right: 0.5rem;
+            margin-right: 0.8rem;
+        }
+        
+        .mobile-action-btn:first-child:hover {
+            transform: translateY(-3px);
         }
         
         .mobile-action-btn:last-child {
             background-color: white;
             color: var(--primary-orange);
-            border: 1px solid var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+        }
+        
+        .mobile-action-btn:last-child:hover {
+            background: var(--primary-orange);
+            color: white;
         }
         
         /* Responsive */
-        @media (max-width: 767px) {
+        @media (max-width: 991px) {
             section {
-                padding: 2rem 1rem;
+                padding: 3.5rem 1.5rem;
             }
             
             .hero {
-                padding-top: 5rem;
+                padding-top: 7rem;
+                min-height: auto;
             }
             
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 2.5rem;
             }
             
             .hero-image {
-                height: 200px;
+                height: 300px;
             }
             
             .portfolio-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
             }
             
             .contact-info, .contact-form-container {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             
             .map-container {
+                height: 350px;
+            }
+            
+            .offers-slider-container {
+                padding: 0.7rem 0;
+                margin: 1.5rem 0 2.5rem;
+            }
+            
+            .offer-slide {
+                padding: 0.4rem 1rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .owner-image {
+                width: 250px;
                 height: 300px;
+            }
+            
+            .offer-slide span {
+                font-size: 0.95rem;
+            }
+            
+            .offer-slide i {
+                font-size: 1.2rem;
+                width: 35px;
+                height: 35px;
+                margin-right: 0.8rem;
+            }
+            
+            .offers-slider-container {
+                padding: 0.6rem 0;
+                margin: 1.2rem 0 2rem;
             }
         }
     </style>
@@ -978,7 +1406,7 @@
         <div class="header-container">
             <div class="logo-container">
                 <div class="logo">
-                    <img src="logo.jpg" alt="IR Group of Constructions">
+                    <img src="logo.jpg" alt="IR Group of Constructions" onerror="this.onerror=null; this.style.display='none';">
                 </div>
                 <div class="logo-text">
                     <h1>IR Group of Constructions</h1>
@@ -996,12 +1424,52 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Building Strong Foundations Across Karnataka</h1>
-                <p>Professional construction services with guaranteed quality, timely delivery, and transparent pricing. Serving all districts across Karnataka.</p>
-                <button class="btn" id="startConstructionBtn">Start Your Construction</button>
+            <div class="hero-content animate-fadeInUp">
+                <h1>Building <span>Strong Foundations</span> Across Karnataka</h1>
+                <p>Professional construction services with guaranteed quality, timely delivery, and transparent pricing. Serving all districts across Karnataka with excellence in engineering and craftsmanship.</p>
+                <button class="btn animate-pulse" id="startConstructionBtn">Start Your Construction</button>
+                
+                <!-- Offers Slider - FIXED -->
+                <div class="offers-slider-container">
+                    <div class="offers-slider">
+                        <div class="offer-slide">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Premium Construction Starting at ₹1999/sqft</span>
+                        </div>
+                        <div class="offer-slide">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>10-Year Structural Warranty</span>
+                        </div>
+                        <div class="offer-slide">
+                            <i class="fas fa-tint"></i>
+                            <span>10-Year Waterproofing Warranty</span>
+                        </div>
+                        <div class="offer-slide">
+                            <i class="fas fa-tools"></i>
+                            <span>1 Year Full Maintenance After Handover</span>
+                        </div>
+                        <!-- Duplicate slides for seamless loop -->
+                        <div class="offer-slide">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Premium Construction Starting at ₹1999/sqft</span>
+                        </div>
+                        <div class="offer-slide">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>10-Year Structural Warranty</span>
+                        </div>
+                        <div class="offer-slide">
+                            <i class="fas fa-tint"></i>
+                            <span>10-Year Waterproofing Warranty</span>
+                        </div>
+                        <div class="offer-slide">
+                            <i class="fas fa-tools"></i>
+                            <span>1 Year Full Maintenance After Handover</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="hero-image">
-                    <img src="r8.jpeg" alt="Construction Project">
+                    <img src="r8.jpeg" alt="Construction Project" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'">
                 </div>
             </div>
         </div>
@@ -1017,21 +1485,21 @@
                         <i class="fas fa-comments"></i>
                     </div>
                     <h3>Consultation</h3>
-                    <p>We discuss your requirements and vision for the project.</p>
+                    <p>We discuss your requirements and vision for the project in detail.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-drafting-compass"></i>
                     </div>
                     <h3>Design</h3>
-                    <p>Creating architectural plans that match your needs.</p>
+                    <p>Creating architectural plans that match your needs and preferences.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-tasks"></i>
                     </div>
                     <h3>Planning</h3>
-                    <p>Detailed project planning and timeline creation.</p>
+                    <p>Detailed project planning and timeline creation with milestones.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
@@ -1045,14 +1513,14 @@
                         <i class="fas fa-hard-hat"></i>
                     </div>
                     <h3>Construction</h3>
-                    <p>Quality construction with regular updates.</p>
+                    <p>Quality construction with regular updates and site supervision.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-key"></i>
                     </div>
                     <h3>Handover</h3>
-                    <p>Final inspection and smooth project handover.</p>
+                    <p>Final inspection and smooth project handover with documentation.</p>
                 </div>
             </div>
         </div>
@@ -1071,42 +1539,42 @@
                 <!-- Residential Projects - Default -->
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="r1.jpeg" alt="Residential Project">
+                        <img src="r1.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                       <img src="r2.jpeg" alt="Residential Project"> 
+                       <img src="r2.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'"> 
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="r3.jpeg" alt="Residential Project">
+                        <img src="r3.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="r4.jpeg" alt="Residential Project">
+                        <img src="r4.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="r5.jpeg" alt="Residential Project">
+                        <img src="r5.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="r6.jpeg" alt="Residential Project">
+                        <img src="r6.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="r7.jpeg" alt="Residential Project">
+                        <img src="r7.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="r8.jpeg" alt="Residential Project">
+                        <img src="r8.jpeg" alt="Residential Project" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                     </div>
                 </div>
             </div>
@@ -1119,7 +1587,7 @@
             <h2 class="section-title">About Us</h2>
             <div class="about-container">
                 <div class="owner-image">
-                    <img src="owner.jpeg" alt="Rohan Gowda C R">
+                    <img src="owner.jpeg" alt="Rohan Gowda C R" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                 </div>
                 <div class="owner-details">
                     <h3>Rohan Gowda C R</h3>
@@ -1152,7 +1620,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"IR Group built our house in Mandya with excellent quality and within the promised timeline. Their attention to detail is remarkable."</p>
+                    <p class="testimonial-text">"IR Group built our house in Mandya with excellent quality and within the promised timeline. Their attention to detail is remarkable. The 10-year structural warranty gives us great peace of mind."</p>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -1170,7 +1638,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Professional team from start to finish. No cost overruns and the quality exceeded our expectations. Highly recommended!"</p>
+                    <p class="testimonial-text">"Professional team from start to finish. No cost overruns and the quality exceeded our expectations. The ₹1999/sqft rate was truly value for money. Highly recommended!"</p>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -1188,7 +1656,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="testimonial-text">"Their expertise in structural engineering is evident in the solid construction of our commercial building. Great work!"</p>
+                    <p class="testimonial-text">"Their expertise in structural engineering is evident in the solid construction of our commercial building. Great work! The 1-year maintenance after handover was especially helpful."</p>
                 </div>
             </div>
         </div>
@@ -1223,25 +1691,25 @@
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, we provide a 10-year structural warranty on all our constructions. This covers any structural defects, giving you long-term assurance of the quality and durability of your building.</p>
+                        <p>Yes, we provide a <strong>10-year structural warranty</strong> on all our constructions. This covers any structural defects, giving you long-term assurance of the quality and durability of your building.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>What is your payment schedule?</h3>
+                        <h3>What is your starting rate per square foot?</h3>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>We follow a milestone-based payment system linked to project completion stages. Payments are only requested after you verify the completion of each construction phase, ensuring transparency and accountability.</p>
+                        <p>Our premium construction starts at <strong>₹1999 per square foot</strong>. This includes quality materials, skilled labor, and adherence to all safety standards. Final pricing depends on specific requirements and finishes.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Can you help with getting necessary permits and approvals?</h3>
+                        <h3>Do you provide post-construction support?</h3>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, we provide complete assistance with all necessary permits, approvals, and documentation required for construction projects. Our team is experienced in dealing with local municipal authorities across Karnataka.</p>
+                        <p>Yes, we provide <strong>1 year of full maintenance</strong> after project handover. This includes addressing any issues that may arise and ensuring your complete satisfaction with our work.</p>
                     </div>
                 </div>
             </div>
@@ -1317,7 +1785,7 @@
         <div class="container">
             <div class="map-container">
                 <!-- Google Maps Embed -->
-               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3894.7224744167665!2d76.89417266845703!3d12.53453540802002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bafa10060d0b33b%3A0x2a26f51953c063a9!2sIR%20GROUP%20OF%20CONSTRUCTIONS!5e0!3m2!1sen!2sin!4v1768406510119!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3894.7224744167665!2d76.89417266845703!3d12.53453540802002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bafa10060d0b33b%3A0x2a26f51953c063a9!2sIR%20GROUP%20OF%20CONSTRUCTIONS!5e0!3m2!1sen!2sin!4v1768406510119!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -1328,11 +1796,11 @@
             <div class="footer-container">
                 <div class="footer-logo">
                     <div class="logo">
-                        <img src="logo.jpg" alt="IR Group of Constructions">
+                        <img src="logo.jpg" alt="IR Group of Constructions" onerror="this.onerror=null; this.style.display='none';">
                     </div>
                     <h3>IR Group of Constructions</h3>
                     <p>Engineers • Builders • Project Consultants</p>
-                    <p style="margin-top: 1rem; font-size: 0.8rem; color: #9ca3af;">Serving All Districts Across Karnataka</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">Serving All Districts Across Karnataka</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
@@ -1375,60 +1843,34 @@
         </button>
     </div>
 
-    <!-- Form Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>Start Your Construction Project</h3>
-                <button class="close-modal" id="closeModal">&times;</button>
+    <!-- Mini Offers Popup -->
+    <div class="mini-offers-popup-overlay" id="miniOffersPopupOverlay">
+        <div class="mini-offers-popup">
+            <button class="close-mini-offers-popup" id="closeMiniOffersPopup">&times;</button>
+            <div class="mini-offers-header">
+                <h3>Exclusive Offer</h3>
+                <p>Limited Time Special for Karnataka Residents</p>
             </div>
-            <div class="modal-body">
-                <form id="constructionForm">
-                    <div class="form-group">
-                        <label for="fullName">Full Name *</label>
-                        <input type="text" id="fullName" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile Number *</label>
-                        <input type="tel" id="mobile" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="projectType">Project Type *</label>
-                        <select id="projectType" class="form-control" required>
-                            <option value="">Select Project Type</option>
-                            <option value="Residential House">Residential House</option>
-                            <option value="Apartment Building">Apartment Building</option>
-                            <option value="Commercial Building">Commercial Building</option>
-                            <option value="Renovation">Renovation</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="districtSearch">District *</label>
-                        <div class="district-search-container">
-                            <input type="text" id="districtSearch" class="form-control" placeholder="Search for your district in Karnataka" required>
-                            <div class="district-results" id="districtResults"></div>
-                        </div>
-                        <input type="hidden" id="selectedDistrict">
-                    </div>
-                </form>
+            <div class="mini-offers-body">
+                <div class="mini-offer-icon" id="miniOfferIcon">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="mini-offer-title" id="miniOfferTitle">Premium Construction Starting at ₹1999/sqft</div>
+                <div class="mini-offer-description" id="miniOfferDescription">Complete construction with quality materials, skilled labor, and modern amenities. No hidden costs, transparent pricing.</div>
             </div>
-            <div class="modal-footer">
-                <button class="btn" id="submitForm">Submit & Continue to WhatsApp</button>
+            <div class="mini-offers-footer">
+                <button class="btn" id="getMiniOfferBtn">Get This Offer Now</button>
+                <div class="mini-offers-dots">
+                    <div class="mini-offers-dot active" data-offer="0"></div>
+                    <div class="mini-offers-dot" data-offer="1"></div>
+                    <div class="mini-offers-dot" data-offer="2"></div>
+                    <div class="mini-offers-dot" data-offer="3"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Karnataka districts for search
-        const karnatakaDistricts = [
-            "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", 
-            "Bidar", "Chamarajanagar", "Chikballapur", "Chikkamagaluru", "Chitradurga", 
-            "Dakshina Kannada", "Davangere", "Dharwad", "Gadag", "Hassan", "Haveri", 
-            "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", 
-            "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayapura", "Yadgir"
-        ];
-
         // Portfolio images by category
         const portfolioItems = {
             residential: [
@@ -1455,27 +1897,61 @@
             ]
         };
 
+        // Mini Offers Data
+        const miniOffers = [
+            {
+                icon: "fas fa-rupee-sign",
+                title: "Premium Construction Starting at ₹1999/sqft",
+                description: "Complete construction with quality materials, skilled labor, and modern amenities. No hidden costs, transparent pricing."
+            },
+            {
+                icon: "fas fa-shield-alt",
+                title: "10-Year Structural Warranty",
+                description: "Comprehensive structural warranty covering all load-bearing elements. Peace of mind for your lifetime investment."
+            },
+            {
+                icon: "fas fa-tint",
+                title: "10-Year Waterproofing Warranty",
+                description: "Complete waterproofing solution with 10-year guarantee. Protection against leaks, dampness, and water damage."
+            },
+            {
+                icon: "fas fa-tools",
+                title: "1 Year Full Maintenance After Handover",
+                description: "Complete maintenance support for one year after project completion. Addressing any issues, adjustments, or repairs."
+            }
+        ];
+
         // DOM Elements
         const startConstructionBtn = document.getElementById('startConstructionBtn');
         const contactBtn = document.getElementById('contactBtn');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const closeModal = document.getElementById('closeModal');
-        const submitForm = document.getElementById('submitForm');
-        const districtSearch = document.getElementById('districtSearch');
-        const districtResults = document.getElementById('districtResults');
-        const selectedDistrict = document.getElementById('selectedDistrict');
+        const miniOffersPopupOverlay = document.getElementById('miniOffersPopupOverlay');
+        const closeMiniOffersPopup = document.getElementById('closeMiniOffersPopup');
+        const getMiniOfferBtn = document.getElementById('getMiniOfferBtn');
         const portfolioTabs = document.querySelectorAll('.portfolio-tab');
         const portfolioGrid = document.getElementById('portfolioGrid');
         const mobileCallBtn = document.getElementById('mobileCallBtn');
         const mobileWhatsAppBtn = document.getElementById('mobileWhatsAppBtn');
         const faqItems = document.querySelectorAll('.faq-item');
         const contactForm = document.getElementById('contactForm');
+        const miniOfferIcon = document.getElementById('miniOfferIcon');
+        const miniOfferTitle = document.getElementById('miniOfferTitle');
+        const miniOfferDescription = document.getElementById('miniOfferDescription');
+        const miniOffersDots = document.querySelectorAll('.mini-offers-dot');
+        const offersSlider = document.querySelector('.offers-slider');
+
+        let currentOfferIndex = 0;
+        let offerInterval;
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
+            // Start the offers slider animation immediately
+            if (offersSlider) {
+                offersSlider.style.animation = 'marquee 25s linear infinite';
+            }
+            
             // Auto popup after 10 seconds
             setTimeout(() => {
-                openModal();
+                openMiniOffersPopup();
             }, 10000);
             
             // Set up portfolio tabs
@@ -1508,39 +1984,6 @@
                 });
             });
             
-            // District search functionality
-            districtSearch.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const filteredDistricts = karnatakaDistricts.filter(district => 
-                    district.toLowerCase().includes(searchTerm)
-                );
-                
-                displayDistrictResults(filteredDistricts);
-            });
-            
-            // Modal form submission
-            submitForm.addEventListener('click', function() {
-                const form = document.getElementById('constructionForm');
-                if (!form.checkValidity()) {
-                    form.reportValidity();
-                    return;
-                }
-                
-                const fullName = document.getElementById('fullName').value;
-                const mobile = document.getElementById('mobile').value;
-                const projectType = document.getElementById('projectType').value;
-                const district = selectedDistrict.value || districtSearch.value;
-                
-                // Create WhatsApp message
-                const message = `Hello IR Group of Constructions,%0A%0ANew Construction Enquiry:%0A%0AName: ${fullName}%0AMobile: ${mobile}%0ADistrict: ${district}%0AProject Type: ${projectType}%0A%0APlease contact me for further discussion.`;
-                
-                // Redirect to WhatsApp
-                window.open(`https://wa.me/6364898126?text=${message}`, '_blank');
-                
-                // Close modal
-                closeModalFunc();
-            });
-            
             // Contact form submission
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -1551,7 +1994,7 @@
                 const message = document.getElementById('contactMessage').value;
                 
                 // Create WhatsApp message
-                const whatsappMessage = `Hello IR Group of Constructions,%0A%0ANew Contact Form Enquiry:%0A%0AName: ${name}%0AMobile: ${mobile}%0AEmail: ${email}%0AMessage: ${message}%0A%0APlease contact me for further discussion.`;
+                const whatsappMessage = `Hello IR Group of Constructions,%0A%0ANew Contact Form Enquiry:%0A%0AName: ${name}%0AMobile: ${mobile}%0AEmail: ${email}%0AMessage: ${message}%0A%0AI'm interested in your special offers:%0A• ₹1999/sqft construction%0A• 10-year structural warranty%0A• 10-year waterproofing warranty%0A• 1-year full maintenance%0A%0APlease contact me for further discussion.`;
                 
                 // Redirect to WhatsApp
                 window.open(`https://wa.me/6364898126?text=${whatsappMessage}`, '_blank');
@@ -1560,16 +2003,35 @@
                 contactForm.reset();
             });
             
-            // Modal triggers
-            startConstructionBtn.addEventListener('click', openModal);
-            contactBtn.addEventListener('click', openModal);
+            // Get Offer button
+            getMiniOfferBtn.addEventListener('click', function() {
+                const offerMessage = `Hello IR Group of Constructions,%0A%0AI'm interested in your special offer:%0A• ${miniOffers[currentOfferIndex].title}%0A%0APlease contact me to discuss my construction project.`;
+                
+                // Redirect to WhatsApp
+                window.open(`https://wa.me/6364898126?text=${offerMessage}`, '_blank');
+                
+                // Close popup
+                closeMiniOffersPopupFunc();
+            });
             
-            // Modal close
-            closeModal.addEventListener('click', closeModalFunc);
-            modalOverlay.addEventListener('click', function(e) {
-                if (e.target === modalOverlay) {
-                    closeModalFunc();
+            // Popup triggers
+            startConstructionBtn.addEventListener('click', openMiniOffersPopup);
+            contactBtn.addEventListener('click', openMiniOffersPopup);
+            
+            // Popup close
+            closeMiniOffersPopup.addEventListener('click', closeMiniOffersPopupFunc);
+            miniOffersPopupOverlay.addEventListener('click', function(e) {
+                if (e.target === miniOffersPopupOverlay) {
+                    closeMiniOffersPopupFunc();
                 }
+            });
+            
+            // Mini offers dots navigation
+            miniOffersDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const offerIndex = parseInt(this.getAttribute('data-offer'));
+                    showMiniOffer(offerIndex);
+                });
             });
             
             // Mobile action buttons
@@ -1580,47 +2042,61 @@
             mobileWhatsAppBtn.addEventListener('click', function() {
                 window.open('https://wa.me/6364898126', '_blank');
             });
-            
-            // Close district results when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.district-search-container')) {
-                    districtResults.classList.remove('active');
-                }
-            });
         });
         
         // Functions
-        function openModal() {
-            modalOverlay.classList.add('active');
+        function openMiniOffersPopup() {
+            miniOffersPopupOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Start automatic offer rotation
+            startOfferRotation();
         }
         
-        function closeModalFunc() {
-            modalOverlay.classList.remove('active');
+        function closeMiniOffersPopupFunc() {
+            miniOffersPopupOverlay.classList.remove('active');
             document.body.style.overflow = 'auto';
+            
+            // Stop offer rotation
+            stopOfferRotation();
         }
         
-        function displayDistrictResults(districts) {
-            districtResults.innerHTML = '';
+        function showMiniOffer(index) {
+            currentOfferIndex = index;
             
-            if (districts.length === 0) {
-                districtResults.classList.remove('active');
-                return;
-            }
+            // Update offer content
+            miniOfferIcon.innerHTML = `<i class="${miniOffers[index].icon}"></i>`;
+            miniOfferTitle.textContent = miniOffers[index].title;
+            miniOfferDescription.textContent = miniOffers[index].description;
             
-            districts.forEach(district => {
-                const div = document.createElement('div');
-                div.className = 'district-item';
-                div.textContent = district;
-                div.addEventListener('click', function() {
-                    districtSearch.value = district;
-                    selectedDistrict.value = district;
-                    districtResults.classList.remove('active');
-                });
-                districtResults.appendChild(div);
+            // Update active dot
+            miniOffersDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
             });
             
-            districtResults.classList.add('active');
+            // Reset rotation timer
+            stopOfferRotation();
+            startOfferRotation();
+        }
+        
+        function startOfferRotation() {
+            offerInterval = setInterval(() => {
+                let nextIndex = currentOfferIndex + 1;
+                if (nextIndex >= miniOffers.length) {
+                    nextIndex = 0;
+                }
+                showMiniOffer(nextIndex);
+            }, 4000); // Change offer every 4 seconds
+        }
+        
+        function stopOfferRotation() {
+            if (offerInterval) {
+                clearInterval(offerInterval);
+            }
         }
         
         function updatePortfolioGrid(category) {
@@ -1643,7 +2119,21 @@
                 });
             }
         }
+        
+        // Initialize first offer
+        showMiniOffer(0);
+        
+        // Fix for logo error handling
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                if (this.parentElement.classList.contains('logo')) {
+                    this.style.display = 'none';
+                    this.parentElement.innerHTML = '<i class="fas fa-home"></i>';
+                    this.parentElement.style.color = 'white';
+                    this.parentElement.style.fontSize = '1.5rem';
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
